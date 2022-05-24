@@ -39,9 +39,7 @@
     "env": "jest"
   },
   "dependencies": {
-    "@aws-sdk/client-sts": "^3.40.0",
-    "@aws-sdk/credential-provider-node": "^3.40.0",
-    "@aws-sdk/credential-provider-web-identity": "^3.41.0",
+    "@aws-sdk/credential-providers": "^3.95.0",
     "exponential-backoff": "^3.1.0",
     "form-data": "^3.0.0",
     "request-micro": "^1.5.1",
