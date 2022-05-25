@@ -280,17 +280,21 @@ class CerberusClient {
   async _executeRequest (requestConfig) {
     let resp
     try {
+      console.log("_executeRequest with requestConfig: ", requestConfig)
       return await backoff.backOff(async () => {
         resp = await request(requestConfig)
         if (!resp) {
+          console.log("returning from !resp : ", resp)
           return resp
         } else if (resp.statusCode < 500) {
+          console.log("returning from resp.statusCode < 500 : ", resp)
           return resp
         } else {
           throw new Error('Cerberus returned a Server Error, executing retry')
         }
       }, { numOfAttempts: DEFAULT_RETRY_ATTEMPT_NUMBER })
     } catch (e) {
+      console.log("returning from catch : ", resp)
       return resp
     }
   }
