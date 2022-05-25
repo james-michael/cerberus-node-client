@@ -295,6 +295,7 @@ class CerberusClient {
       }, { numOfAttempts: DEFAULT_RETRY_ATTEMPT_NUMBER })
     } catch (e) {
       console.log("returning from catch : ", resp)
+      console.log(e.message)
       return resp
     }
   }
