@@ -248,12 +248,13 @@ class CerberusClient {
     let response
     try {
       response = await this._executeRequest(Object.assign({}, { json: true }, requestConfig))
+      console.log("Recived response from cerberus. ", response)
     } catch (error) {
       const msg = 'There was an error executing a call to Cerberus.\nmsg: \'' + error.message + '\''
       this._log(msg)
       throw new Error(msg)
     }
-
+    console.log("Attempting to check the status code")
     if (!(response.statusCode >= 200 && response.statusCode < 300)) {
       if (response.headers['content-type'] && response.headers['content-type'].startsWith('application/json')) {
         const msg = `Cerberus returned an error, when executing a call.\nstatus code: ${response.statusCode}\nmsg: ${JSON.stringify(response.data)}`
@@ -356,6 +357,7 @@ class CerberusClient {
     let authResponse
     try {
       const authHeaders = await getAuthenticationHeaders(this._region)
+      console.log("Received Authentication headers", authHeaders)
       authResponse = await this._executeCerberusRequest({
         method: 'POST',
         url: urlJoin(this._hostUrl, 'v2/auth/sts-identity'),
